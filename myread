@@ -1,0 +1,39 @@
+source = https://techvblogs.com/blog/how-to-install-vue3-laravel Install laravel 8 + vuejs 3 ==== install laravel 8 composer create-project laravel/laravel lavue ==== install vuejs 3 npm install --save vue@next npm install --save-dev vue-loader@next ====
+add vue on webpack.js const mix = require('laravel-mix'); mix.js('resources/js/app.js', 'public/js') .vue() .postCss('resources/css/app.css', 'public/css', [ // ]); ========= resources/js/components.Welcome.vue
+<template>
+    <h1>{{ title }}</h1>
+</template>
+<script>
+    export default {
+        setup: () => ({
+            title: 'How To Install Vue 3 in Laravel 8 From Scratch'
+        })
+    }
+</script>
+
+
+=========================resources/js/app.js require('./bootstrap') import { createApp } from 'vue' import Welcome from './components/Welcome' const app = createApp({}) app.component('welcome', Welcome) app.mount('#app') =================Welcome.blade.php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Laravel Vuejs</title>
+</head>
+
+<body class="antialiased">
+    <div id="app">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
+            <welcome/>
+        </div>
+    </div>
+
+    <script src="{{ mix('js/app.js') }}"></script>
+</body>
+
+</html>
+
+
+======================= npm run watch
